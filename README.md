@@ -37,4 +37,4 @@ The **codebase** for this portal is licensed under the **MIT License**.
 * **Ownership**: All video content belongs strictly to the original YouTube copyright holders.
 
 ---
-*Built with ♥️ by Rahul Das Emon*
+*Built with ♥️ for Economics Community*
