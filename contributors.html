@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributors | FREE-EDU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700;800&display=swap');
+        
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background: #050505;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(30, 58, 138, 0.1) 0px, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes plasmaGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .text-plasma {
+            background: linear-gradient(-45deg, #ff17c6, #1cefff, #1aff7d, #ff17c6);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: plasmaGradient 10s ease infinite;
+            transform: translate3d(0,0,0);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+            will-change: transform;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:active { transform: scale(0.96); }
+
+        /* Subtle Serial Number for Cards */
+        .serial-number {
+            position: absolute;
+            right: 4px;
+            bottom: -8px;
+            font-size: 52px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.04);
+            font-style: italic;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+
+        /* Large Serial Number for Modal (Bottom Right) */
+        .modal-serial {
+            position: absolute;
+            right: 15px;
+            bottom: 65px;
+            font-size: 110px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            font-style: italic;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .role-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            margin-top: 4px;
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+        }
+
+        #modalRole .role-badge-small { font-size: 15px !important; letter-spacing: 0.15em; }
+        #modalRole .sub-text-small { font-size: 12px !important; color: #cbd5e1; letter-spacing: 0.05em; }
+
+        @media (max-width: 640px) {
+            .max-w-6xl { padding-top: 0.5rem !important; }
+            .join-box { margin-bottom: 1rem !important; padding: 1.25rem !important; }
+            .contributor-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+            .glass-card { padding: 8px 4px !important; border-radius: 12px !important; }
+            .card-name { font-size: 0.65rem !important; }
+            .role-badge-small { font-size: 6px !important; }
+            .sub-text-small { font-size: 5.5px !important; color: #cbd5e1 !important; }
+            .serial-number { font-size: 38px; bottom: -5px; }
+            .modal-serial { font-size: 80px; bottom: 85px; right: 10px; }
+        }
+    </style>
+</head>
+<body class="text-slate-300 antialiased min-h-screen pb-10">
+
+    <div class="max-w-6xl mx-auto px-4 pt-4">
+        
+        <div class="join-box mx-auto w-full lg:w-[35%] bg-slate-950/80 border border-slate-800 backdrop-blur-2xl rounded-[2rem] p-5 mb-6 flex flex-col items-center gap-4 shadow-2xl">
+            <div class="text-center">
+                <h2 class="text-plasma text-[10px] font-black uppercase tracking-[0.4em] mb-1">Contribute</h2>
+                <p class="text-lg font-extrabold text-white tracking-tighter">Add your profile♥️</p>
+            </div>
+            <div class="flex justify-center gap-3 w-full">
+                <a href="#" class="flex-1 flex items-center justify-center gap-2 py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-xs active:scale-95 transition-transform">
+                    <i class="fa-solid fa-table-cells"></i> Sheet
+                </a>
+                <a href="#" class="flex-1 flex items-center justify-center gap-2 py-2.5 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-xl font-bold text-xs active:scale-95 transition-transform">
+                    <i class="fa-brands fa-github"></i> Discord
+                </a>
+                <a href="#" class="flex-1 flex items-center justify-center gap-2 py-2.5 bg-white text-black rounded-xl font-bold text-xs active:scale-95 transition-transform">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="contributor-grid grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6">
+            <script>
+                // profiles array with sNum added after the image link
+                const profiles = [
+                    { name: "Rahul", role: "Lead Dev", sub: "Core Engine", img: "https://avatars.githubusercontent.com/u/279522844", sNum: "01" },
+                    { name: "Sarah", role: "Data Sci", sub: "ML Researcher", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah", sNum: "02" },
+                    { name: "Siam", role: "Contributor", sub: "Backend Dev", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Siam", sNum: "03" },
+                    { name: "Anika", role: "UI Design", sub: "Visual Art", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Anika", sNum: "04" },
+                    { name: "Tanvir", role: "Tester", sub: "QA Engineer", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Tanvir", sNum: "05" },
+                    { name: "Faria", role: "Editor", sub: "Content Lead", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Faria", sNum: "06" },
+                    { name: "Zayan", role: "DevOps", sub: "Cloud Arch", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zayan", sNum: "07" },
+                    { name: "Nilo", role: "Security", sub: "Cyber Expert", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Nilo", sNum: "08" },
+                    { name: "Ishat", role: "Frontend", sub: "React Dev", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ishat", sNum: "09" },
+                    { name: "Rifat", role: "Support", sub: "Community", img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rifat", sNum: "10" }
+                ];
+
+                document.write(profiles.map((p) => `
+                    <div class="glass-card px-4 py-3 rounded-2xl cursor-pointer text-center" onclick="openModal(this, '${p.sNum}')">
+                        <div class="serial-number">${p.sNum}</div>
+                        <div class="overflow-hidden rounded-lg mb-2 bg-slate-900 mx-auto relative z-10">
+                            <img src="${p.img}" class="w-full aspect-square object-cover" loading="lazy">
+                        </div>
+                        <h3 class="card-name text-white font-bold text-sm tracking-tight relative z-10">${p.name}</h3>
+                        <div class="role-container">
+                            <span class="role-badge-small text-plasma block text-[8px] font-black uppercase tracking-widest">${p.role}</span>
+                            <span class="sub-text-small block text-slate-400 text-[7px] font-medium uppercase tracking-[0.1em]">${p.sub}</span>
+                        </div>
+                    </div>
+                `).join(''));
+            </script>
+        </div>
+
+        <footer class="mt-16 py-8 border-t border-slate-900 text-center text-slate-700 text-[10px] tracking-widest uppercase">
+            &copy; POWERED BY BMC-ECO • ALL RIGHTS RESOLVED 2026
+        </footer>
+    </div>
+
+    <div id="profileModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center z-50 p-4" onclick="closeModal()">
+        <div class="max-w-md w-full bg-zinc-950 border border-white/10 p-8 rounded-3xl relative overflow-hidden transform transition-transform duration-300 scale-95" id="modalContent" onclick="event.stopPropagation()">
+            <div id="modalSerial" class="modal-serial"></div>
+            
+            <img id="modalImg" src="" class="w-full aspect-square object-cover rounded-2xl mb-6 shadow-2xl relative z-10">
+            <h2 id="modalName" class="text-3xl font-bold text-white mb-1 tracking-tighter relative z-10"></h2>
+            <div id="modalRole" class="mb-8 relative z-10"></div>
+            <button onclick="closeModal()" class="w-full py-4 bg-white text-black font-extrabold rounded-xl active:scale-95 transition-transform uppercase tracking-widest text-xs relative z-10">Close Profile</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(el, sNum) {
+            const modal = document.getElementById('profileModal');
+            const content = document.getElementById('modalContent');
+            
+            document.getElementById('modalImg').src = el.querySelector('img').src;
+            document.getElementById('modalName').innerText = el.querySelector('h3').innerText;
+            document.getElementById('modalSerial').innerText = sNum;
+            document.getElementById('modalRole').innerHTML = `<div class="role-container">${el.querySelector('.role-container').innerHTML}</div>`;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => content.classList.add('scale-100'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('profileModal');
+            document.getElementById('modalContent').classList.remove('scale-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }, 200);
+        }
+    </script>
+</body>
+</html>
+
